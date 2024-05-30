@@ -1,6 +1,4 @@
-/* eslint-disable */
 import Currency from './3-currency';
-/* eslint-enable */
 
 export default class Pricing {
   constructor(amount, currency) {
@@ -17,19 +15,30 @@ export default class Pricing {
   }
 
   set amount(value) {
+    if (typeof value !== 'number') {
+      throw new TypeError('Amount must be a number');
+    }
     this._amount = value;
   }
 
   set currency(value) {
+    if (!(value instanceof Currency)) {
+      throw new TypeError('Currency must be an instanceof of Currency');
+    }
     this._currency = value;
   }
 
   displayFullPrice() {
     return `${this._amount} ${this._currency.name} (${this._currency.code})`;
   }
-  /* eslint-disable */
-  convertPrice(amount, conversionRate) {
+
+  static convertPrice(amount, conversionRate) {
+    if (typeof amount !== 'number') {
+      throw new TypeError('Amount must be a number');
+    }
+    if (typeof conversionRate !== 'number') {
+      throw new TypeError('Conversion rate must be a number');
+    }
     return amount * conversionRate;
   }
-  /* eslint-enable */
 }
