@@ -42,6 +42,7 @@ const app = http.createServer((request, response) => {
       response.write(promiseRes);
       response.end();
     }).catch((error) => {
+      response.write('This is the list of our students\n');
       response.write(error.message);
       response.end();
     });
