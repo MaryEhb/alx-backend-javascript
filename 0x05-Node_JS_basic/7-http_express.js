@@ -23,11 +23,11 @@ const countStudents = (path) => new Promise((resolve, reject) => {
         fieldsDetails[field] = [name];
       }
     }
-    let response = '';
-    response += (`Number of students: ${fileLines.length - 1}`);
+    const response = [];
+    response.push(`Number of students: ${fileLines.length - 1}`);
     for (const [field, names] of Object.entries(fieldsDetails)) {
       const list = names.join(', ');
-      response += (`\nNumber of students in ${field}: ${names.length}. List: ${list}`);
+      response.push(`Number of students in ${field}: ${names.length}. List: ${list}`);
     }
 
     resolve(response);
@@ -45,7 +45,7 @@ app.get('/students', (req, res) => {
   const DB_FILE = process.argv.length > 2 ? process.argv[2] : '';
   res.type('text/plain');
   countStudents(DB_FILE).then((promiseRes) => {
-    res.send(`This is the list of our students\n${promiseRes}`);
+    res.send(`This is the list of our students\n${promiseRes.join('\n')}`);
   }).catch((error) => {
     res.send(error.message);
   });
