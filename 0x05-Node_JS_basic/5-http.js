@@ -37,8 +37,8 @@ const countStudents = (path) => new Promise((resolve, reject) => {
 const app = http.createServer((request, response) => {
   if (request.url === '/students') {
     const DB_FILE = process.argv.length > 2 ? process.argv[2] : '';
-    response.write('This is the list of our students\n');
     countStudents(DB_FILE).then((promiseRes) => {
+      response.write('This is the list of our students\n');
       response.write(promiseRes);
       response.end();
     }).catch((error) => {
