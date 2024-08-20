@@ -47,7 +47,8 @@ app.get('/students', (req, res) => {
   countStudents(DB_FILE).then((promiseRes) => {
     res.send(`This is the list of our students\n${promiseRes.join('\n')}`);
   }).catch((error) => {
-    res.send(error.message);
+    res.setHeader('Content-Type', 'text/plain');
+    res.send(`This is the list of our students\n${error.message}`);
   });
 });
 
