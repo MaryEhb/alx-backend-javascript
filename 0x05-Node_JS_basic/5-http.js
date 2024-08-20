@@ -42,13 +42,15 @@ const app = http.createServer((request, response) => {
       response.write(promiseRes);
       response.end();
     }).catch((error) => {
-      response.write(error.join('\n'));
+      response.write(error.message);
       response.end();
     });
   } else if (request.url === '/') {
     response.write('Hello Holberton School!');
     response.end();
   } else {
+    response.writeHead(404, { 'Content-Type': 'text/plain' });
+    response.write('Not Found');
     response.end();
   }
 });
