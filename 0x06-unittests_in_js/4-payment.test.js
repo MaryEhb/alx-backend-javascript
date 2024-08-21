@@ -6,8 +6,8 @@ const expect = chai.expect;
 
 describe('sendPaymentRequestToApi', () => {
   it('Test 0', () => {
-    const spy = sinon.spy(console, 'log');
     const stub = sinon.stub(Utils, 'calculateNumber');
+    const spy = sinon.spy(console, 'log');
 
     stub.returns(10);
     sendPaymentRequestToApi(100, 20);
