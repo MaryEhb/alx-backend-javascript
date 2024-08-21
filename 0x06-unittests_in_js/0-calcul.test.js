@@ -1,7 +1,7 @@
 const calculateNumber = require('./0-calcul');
 const assert = require('assert');
 
-describe('Tests calc number Task 0', () => {
+describe('calculateNumber', () => {
   it('Test 0', () => {
     assert(calculateNumber(1, 3) === 4);
   });
